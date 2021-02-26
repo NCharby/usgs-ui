@@ -2,20 +2,20 @@
 import React, { useContext, useReducer, createContext} from 'react'
 import type { Node } from 'react';
 
-import { MapActions } from './map.actions'
+import { MapActions, MapActionTypes } from './map.actions'
 
 const MapStateContext = createContext()
 const MapDispatchContext = createContext()
 
 const initialState = {
     //TODO: store browser location in localstorage
-    center: [-122.22817060000001, 47.877317399999995]
+    center: [100, 37]
 }
 
 function MapReducer(state, action) {
   switch (action.type) {
-    case MapActions.SET_MAP_CENTER: {
-      return {center: action.payload}
+    case MapActionTypes.SET_MAP_CENTER: {
+      return {...state, center: action.payload}
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`)

@@ -5,6 +5,6 @@ export const MapActionTypes: {[string]: string} = {
 
 export const MapActions = {
     SET_MAP_CENTER: (payload: any): {type: any, payload: any} => {
-        return {type: MapActions.SET_MAP_CENTER, payload}
+        return {type: MapActionTypes.SET_MAP_CENTER, payload}
     }
 }

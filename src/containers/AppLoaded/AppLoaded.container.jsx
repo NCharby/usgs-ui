@@ -1,7 +1,7 @@
 import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-import {  useMapContext } from '../../context/map.provider'
+import { useMapContext } from '../../context/map.provider'
 
 import NavBarContainer from '../NavBar/NavBar.component'
 import DetailPanelContainer from '../DetailPanel/DetailPanel.container'

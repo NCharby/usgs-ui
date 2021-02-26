@@ -9,18 +9,18 @@ export const SearchActionTypes: {[string]: string} = {
 
 export const SearchActions = {
     SET_QUERY: (payload: any): {type: any, payload: string} => {
-        return {type: SearchActions.SET_QUERY, payload}
+        return {type: SearchActionTypes.SET_QUERY, payload}
     },
     SET_STARTTIME: (payload: any): {type: any, payload: Date} => {
-        return {type: SearchActions.SET_STARTTIME, payload}
+        return {type: SearchActionTypes.SET_STARTTIME, payload}
     },
     SET_ENDTIME: (payload: any): {type: any, payload: Date} => {
-        return {type: SearchActions.SET_ENDTIME, payload}
+        return {type: SearchActionTypes.SET_ENDTIME, payload}
     },
     SET_MINMAGNITUDE: (payload: any): {type: any, payload: number} => {
-        return {type: SearchActions.SET_MINMAGNITUDE, payload}
+        return {type: SearchActionTypes.SET_MINMAGNITUDE, payload}
     },
     SET_MAXRADIUSKM: (payload: any): {type: any, payload: number} => {
-        return {type: SearchActions.SET_MAXRADIUSKM, payload}
+        return {type: SearchActionTypes.SET_MAXRADIUSKM, payload}
     },
 }
