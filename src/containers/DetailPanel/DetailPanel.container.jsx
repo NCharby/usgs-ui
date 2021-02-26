@@ -8,10 +8,7 @@ import { useMapContext } from '../../context/map.provider'
 import {
     Drawer,
     IconButton,
-    Divider,
-    List,
-    ListItem,
-    ListItemText
+    Divider
 } from '@material-ui/core'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import useStyles from './DetailPanel.styles'
@@ -24,7 +21,7 @@ function displayDate(date: number): string {
 export default function DetailPanelContainer({ detailToggle, detailOpen }: $AppState): Node {
     const classes = useStyles()
     //$FlowFixMe
-    const [ { center, quakes } ] = useMapContext()
+    const [ { quakes } ] = useMapContext()
 
     return (
         <Drawer
@@ -50,7 +47,7 @@ export default function DetailPanelContainer({ detailToggle, detailOpen }: $AppS
                 <span>Magnitude: {q.properties.mag}</span>
                 <span>{displayDate(q.properties.time)}</span>
               </div>
-              <a href={q.properties.url} target="_blank">Details</a>
+              <a href={q.properties.url} target="_blank" rel="noreferrer">Details</a>
             </div>
           ))}
         

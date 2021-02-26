@@ -12,9 +12,15 @@ const Map = ReactMapboxGl({
   logoPosition: "top-right"
 });
 
+//https://stackoverflow.com/questions/37599561/drawing-a-circle-with-the-radius-in-miles-meters-with-mapbox-gl-js
+const kmToPixelsAtMaxZoom = (km, latitude) =>
+  (km * 1000) / 0.075 / Math.cos(latitude * Math.PI / 180)
+
+//#94231F
+
 export default function AppLoadedContainer({ detailToggle, detailOpen, fetchQuakeData }) {
     const [ { center, quakes } ] = useMapContext()
-    const [ { maxradiuskm } ] = useSearchContext()
+    const [ searchState ] = useSearchContext()
 
     return (
         <div className='app-container'>
@@ -33,19 +39,58 @@ export default function AppLoadedContainer({ detailToggle, detailOpen, fetchQuak
                         width: '100vw'
                     }}
                     center={center}
+                    onDragEnd={(map) => {
+                        const c = map.getCenter()
+                        fetchQuakeData({
+                            ...searchState,
+                            search: `${c.lng}, ${c.lat}`
+                        })
+                    }}
                 >
+                    {/* The search radius */}
                     <Layer type="circle" paint={{
                         'circle-radius': {
-                            'base': 1.75,
-                            'stops': [
-                                [12, 2],
-                                [22, 180]
-                            ]
+                            stops: [
+                                [0, 0],
+                                [20, kmToPixelsAtMaxZoom(searchState.maxradiuskm, center[1])]
+                            ],
+                            base: 2
                         },
-                        'circle-color': '#E54E52',
-    'circle-opacity': 0.8
+                        'circle-opacity': 0,
+                        'circle-stroke-color': '#1F3449',
+                        'circle-stroke-width': 4,
+                        'circle-stroke-opacity': 0.3
+
                     }}>
                         <Feature coordinates={center} />
+                    </Layer>
+                    <Layer type="circle" paint={{
+                        'circle-color': [
+                            'interpolate',
+                            ['linear'],
+                            ['get', 'mag'],
+                            6,
+                            '#FCA107',
+                            8,
+                            '#7F3121'
+                        ],
+                        'circle-opacity': 0.75,
+                        'circle-radius': [
+                            'interpolate',
+                            ['linear'],
+                            ['get', 'mag'],
+                            6,
+                            20,
+                            8,
+                            40
+                        ]
+                    }}>
+                        {quakes.map( q => (
+                            <Feature 
+                                key={q.id} 
+                                properties={q.properties}
+                                coordinates={q.geometry.coordinates} />
+                        ))}
                     </Layer>
                 </Map>
                 <aside>

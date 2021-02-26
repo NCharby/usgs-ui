@@ -8,7 +8,7 @@ const SearchStateContext = createContext()
 const SearchDispatchContext = createContext()
 
 const initialState = {
-    starttime: new Date('1995-12-17T03:24:00'),
+    starttime: new Date('2010-12-17T03:24:00'),
     endtime: new Date(),
     minmagnitude: "4",
     maxradiuskm: '100',
