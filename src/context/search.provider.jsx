@@ -12,13 +12,13 @@ const initialState = {
     endtime: new Date(),
     minmagnitude: "4",
     maxradiuskm: '100',
-    query: ''
+    search: ''
 }
 
 function SearchReducer(state, action) {
   switch (action.type) {
-    case SearchActionTypes.SET_QUERY: {
-      return {...state, query: action.payload}
+    case SearchActionTypes.SET_SEARCH: {
+      return {...state, search: action.payload}
     }
     case SearchActionTypes.SET_STARTTIME: {
       return {...state, starttime: action.payload.toISOString().split('T')[0]}
@@ -32,6 +32,7 @@ function SearchReducer(state, action) {
     case SearchActionTypes.SET_MAXRADIUSKM: {
       return {...state, maxradiuskm: action.payload}
     }
+
     default: {
       throw new Error(`Unhandled action type: ${action.type}`)
     }
@@ -62,6 +63,7 @@ function useSearchContext(lookup?: string | Array<string>): [{[string]: any}, an
         if(Array.isArray(lookup)){
             //if items in lookup are in state
             let states = lookup.reduce( (acc, cur: string) => {
+                //$FlowFixMe
                 const j = ctx[cur] || null
                 if(!!j) return acc[cur] = j
                 return acc
@@ -69,6 +71,7 @@ function useSearchContext(lookup?: string | Array<string>): [{[string]: any}, an
             //return them as object with dispatch
             return [states, dispatch]
         } else {
+            //$FlowFixMe
             const s = ctx[lookup] || null
             return [{[lookup]: s}, dispatch]
         }

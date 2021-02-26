@@ -9,13 +9,17 @@ const MapDispatchContext = createContext()
 
 const initialState = {
     //TODO: store browser location in localstorage
-    center: [100, 37]
+    center: [100, 37],
+    quakes: []
 }
 
 function MapReducer(state, action) {
   switch (action.type) {
     case MapActionTypes.SET_MAP_CENTER: {
       return {...state, center: action.payload}
+    }
+    case MapActionTypes.SET_QUAKES: {
+      return {...state, quakes: action.payload}
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`)

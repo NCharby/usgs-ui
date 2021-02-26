@@ -25,15 +25,25 @@ import SearchIcon from '@material-ui/icons/Search';
 
 import useStyles from './NavBar.styles'
 
-export default function NavBarContainer({ detailToggle }: $AppState): Node {
+export default function NavBarContainer({ detailToggle, fetchQuakeData }: $AppState): Node {
     const classes = useStyles()
     const [{
-        query,
+        search,
         starttime,
         endtime,
         maxradiuskm,
         minmagnitude
     }, dispatch] = useSearchContext()
+
+    const handleQuerySubmit = () => {
+        fetchQuakeData({
+            search,
+            starttime,
+            endtime,
+            maxradiuskm,
+            minmagnitude
+        })
+    }
 
     return (
         <div className={classes.root}>
@@ -57,8 +67,8 @@ export default function NavBarContainer({ detailToggle }: $AppState): Node {
                             </div>
                             <InputBase
                                 placeholder="Search by location"
-                                value={query || ""}
-                                onChange={evt => dispatch(SearchActions.SET_QUERY(evt.target.value))}
+                                value={search || ""}
+                                onChange={evt => dispatch(SearchActions.SET_SEARCH(evt.target.value))}
                                 classes={{
                                     root: classes.inputRoot,
                                     input: classes.inputInput,
@@ -130,7 +140,9 @@ export default function NavBarContainer({ detailToggle }: $AppState): Node {
                             }}/>
                     </MuiPickersUtilsProvider>
                     <FormControl>
-                        <Button variant="contained">
+                        <Button 
+                            onClick={handleQuerySubmit}
+                            variant="contained">
                             Search
                         </Button>
                     </FormControl>

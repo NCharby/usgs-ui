@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles'
 
-const drawerWidth = 240
+const drawerWidth = 400
 
 export default makeStyles((theme) => ({
   root: {
@@ -15,6 +15,7 @@ export default makeStyles((theme) => ({
   },
   drawerContainer: {
     overflow: 'auto',
+    paddingBottom: "100px"
   },
   drawerHeader: {
     display: 'flex',
@@ -24,5 +25,12 @@ export default makeStyles((theme) => ({
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   },
-
+  listItem: {
+    textAlign: 'left',
+    padding: '0 20px'
+  },
+  listDetails: {
+    display: 'flex',
+    justifyContent: 'space-between'
+  }
 }));

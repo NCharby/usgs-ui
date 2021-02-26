@@ -1,7 +1,8 @@
 // @flow
-
+import { type $UIRequestSearch } from './api/quake.types'
 
 export type $AppState = {
     detailOpen: boolean,
-    detailToggle(): void
+    detailToggle(): void,
+    fetchQuakeData($UIRequestSearch): Promise<any>
 }
