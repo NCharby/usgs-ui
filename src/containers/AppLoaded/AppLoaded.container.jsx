@@ -1,8 +1,7 @@
-import { useContext } from 'react'
 import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-import { AppContext } from '../../Context'
+import {  useMapContext } from '../../context/map.provider'
 
 
 // import {
@@ -15,9 +14,7 @@ const Map = ReactMapboxGl({
 });
 
 export default function AppLoadedContainer(params) {
-    const { detailsOpen } = useContext(AppContext)
-
-
+    const [ mapState ] = useMapContext()
 
     return (
         <div>
@@ -26,11 +23,13 @@ export default function AppLoadedContainer(params) {
             </header>
             <main>
                 <Map
+                    // eslint-disable-next-line 
                     style="mapbox://styles/mapbox/streets-v9"
                     containerStyle={{
                         height: '100vh',
                         width: '100vw'
                     }}
+                    center={mapState.center}
                 >
 
                 </Map>

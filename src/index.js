@@ -1,13 +1,21 @@
+// @flow
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { MapProvider } from './context/map.provider'
+import { SearchProvider } from './context/search.provider'
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <SearchProvider>
+    <React.StrictMode>
+      <MapProvider>
+        <App />
+      </MapProvider>
+    </React.StrictMode>
+  </SearchProvider>,
   document.getElementById('root')
 );
 
