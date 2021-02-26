@@ -3,6 +3,8 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 
 import {  useMapContext } from '../../context/map.provider'
 
+import NavBarContainer from '../NavBar/NavBar.component'
+import DetailPanelContainer from '../DetailPanel/DetailPanel.container'
 
 // import {
 //     Container
@@ -13,13 +15,15 @@ const Map = ReactMapboxGl({
   logoPosition: "top-right"
 });
 
-export default function AppLoadedContainer(params) {
+export default function AppLoadedContainer({ detailToggle, detailOpen }) {
     const [ mapState ] = useMapContext()
 
     return (
-        <div>
+        <div className='app-container'>
             <header className="App-header">
-                Nav Bar
+                <NavBarContainer 
+                    detailToggle={detailToggle}
+                />
             </header>
             <main>
                 <Map
@@ -34,9 +38,10 @@ export default function AppLoadedContainer(params) {
 
                 </Map>
                 <aside>
-                    <div className="side-out" id="DetailPanel">
-
-                    </div>
+                    <DetailPanelContainer 
+                        detailToggle={detailToggle}
+                        detailOpen={detailOpen}
+                    />
                 </aside>
             </main>
         </div>

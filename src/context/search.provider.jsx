@@ -1,6 +1,6 @@
 // @flow
 import React, { useContext, useReducer, createContext} from 'react'
-import type { Node } from 'react';
+import type { Node } from 'react'
 
 import { SearchActions } from './search.actions'
 
