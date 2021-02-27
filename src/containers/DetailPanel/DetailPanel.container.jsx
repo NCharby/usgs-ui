@@ -22,7 +22,7 @@ export default function DetailPanelContainer({ detailToggle, detailOpen }: $AppS
     const classes = useStyles()
     //$FlowFixMe
     const [ { quakes, meta } ] = useMapContext()
-    console.log(meta)
+    
     return (
         <Drawer
         className={classes.drawer}
@@ -46,8 +46,8 @@ export default function DetailPanelContainer({ detailToggle, detailOpen }: $AppS
                 <dd>{meta.min}</dd>
                 <dt>Max:</dt>
                 <dd>{meta.max}</dd>
-                <dt>Average:</dt>
-                <dd>{meta.mean}</dd>
+                <dt>Median:</dt>
+                <dd>{meta.median}</dd>
                 <dt>Count:</dt>
                 <dd>{meta.count}</dd>
               </dl>
