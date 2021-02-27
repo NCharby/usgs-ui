@@ -1,15 +1,16 @@
 import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import mapboxgl from 'mapbox-gl';
-//https://github.com/mapbox/mapbox-gl-js/issues/10173
-// eslint-disable-next-line import/no-webpack-loader-syntax
-mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 import { useMapContext } from '../../context/map.provider'
 import { useSearchContext } from '../../context/search.provider'
 
 import NavBarContainer from '../NavBar/NavBar.component'
 import DetailPanelContainer from '../DetailPanel/DetailPanel.container'
+
+//https://github.com/mapbox/mapbox-gl-js/issues/10173
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 const Map = ReactMapboxGl({
   accessToken: window.CONFIG.MAPBOX_TOKEN,
