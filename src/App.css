@@ -26,3 +26,28 @@ html {
   display: flex;
   flex-direction: column;
 }
+
+.meta-container {
+  padding: 0 20px;
+}
+
+dl {
+  display: flex;
+  flex-flow: row wrap;
+  border: solid #FCA107;
+  border-width: 1px 1px 0 0;
+}
+dt {
+  flex-basis: 40%;
+  padding: 2px 4px;
+  background: #FCA107;
+  text-align: right;
+  color: #333;
+}
+dd {
+  flex-basis: 60%;
+  flex-grow: 1;
+  margin: 0;
+  padding: 2px 4px;
+  border-bottom: 1px solid #FCA107;
+}

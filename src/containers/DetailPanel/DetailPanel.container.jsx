@@ -21,8 +21,8 @@ function displayDate(date: number): string {
 export default function DetailPanelContainer({ detailToggle, detailOpen }: $AppState): Node {
     const classes = useStyles()
     //$FlowFixMe
-    const [ { quakes } ] = useMapContext()
-
+    const [ { quakes, meta } ] = useMapContext()
+    console.log(meta)
     return (
         <Drawer
         className={classes.drawer}
@@ -37,9 +37,29 @@ export default function DetailPanelContainer({ detailToggle, detailOpen }: $AppS
             <ChevronLeftIcon />
           </IconButton>
         </div>
+        {meta && (
+          <>
+            <Divider />
+            <div className="meta-container">
+              <dl>
+                <dt>Min:</dt>
+                <dd>{meta.min}</dd>
+                <dt>Max:</dt>
+                <dd>{meta.max}</dd>
+                <dt>Average:</dt>
+                <dd>{meta.mean}</dd>
+                <dt>Count:</dt>
+                <dd>{meta.count}</dd>
+              </dl>
+            </div>
+          </>
+        )}
         
+        <Divider />
         <div className={classes.drawerContainer}>
-          <Divider />
+
+
+
           {quakes.map( (q, i) => (
             <div key={q.id} className={classes.listItem}>
               <h3>{q.properties.place}</h3>

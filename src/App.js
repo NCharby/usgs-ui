@@ -53,6 +53,7 @@ function App() {
     if(data){
       dispatch(MapActions.SET_MAP_CENTER(data.coordinates))
       dispatch(MapActions.SET_QUAKES(data.quakes))
+      dispatch(MapActions.SET_META(data.meta))
       if(!data.quakes.length) {
         setError(true)
         setHelpText("No quakes found for that search")

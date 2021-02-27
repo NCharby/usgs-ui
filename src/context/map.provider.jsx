@@ -21,6 +21,9 @@ function MapReducer(state, action) {
     case MapActionTypes.SET_QUAKES: {
       return {...state, quakes: action.payload}
     }
+    case MapActionTypes.SET_META: {
+      return {...state, meta: action.payload}
+    }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`)
     }
