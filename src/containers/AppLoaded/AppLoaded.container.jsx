@@ -1,6 +1,10 @@
 import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
+//https://github.com/mapbox/mapbox-gl-js/issues/10173
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
+
 import { useMapContext } from '../../context/map.provider'
 import { useSearchContext } from '../../context/search.provider'
 
