@@ -7,7 +7,7 @@ import {
 } from './quake.types'
 
 export async function fetchQuakes (query: $UIRequestSearch): Promise<any> {
-    
+    console.log(process.env)
     try {
         const { data }: { data: $QuakeResponse } = await axios.get('/api/0.1/quakes', {
             params: {
