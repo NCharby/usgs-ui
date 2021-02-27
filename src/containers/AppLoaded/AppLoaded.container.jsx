@@ -1,6 +1,6 @@
 import ReactMapboxGl, { Layer, Feature } from 'react-mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-
+import mapboxgl from 'mapbox-gl';
 //https://github.com/mapbox/mapbox-gl-js/issues/10173
 // eslint-disable-next-line import/no-webpack-loader-syntax
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
